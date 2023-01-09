@@ -1,16 +1,24 @@
-import { trpc } from '../utils/trpc';
+import { trpc } from "../utils/trpc";
 
 export default function IndexPage() {
-  const hello = trpc.hello.useQuery({ data: 5 , name: 'Anurag'  });
-  const github = trpc.fetchsome.useQuery({username:'Anurag30112003'})
-  if (!hello.data) {
+  const github = trpc.fetchsome.useQuery({ username: "github" });
+  if (!github.data) {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      {/* <p>{hello.data.greeting}</p> */}
-      <p>{hello.data.name}</p>
-      <p>{github.data?.followers}</p>
+    <div className="hr">
+      <p>
+        <b>
+          {" "}
+          <span className="username">{github.data?.username} </span>
+        </b>
+        you have{" "}
+        <b>
+          {" "}
+          <span className="username"> {github.data?.followers}</span>{" "}
+        </b>{" "}
+        followers
+      </p>
     </div>
   );
 }

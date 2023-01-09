@@ -2,22 +2,7 @@ import { z } from "zod";
 import { procedure, router } from "../trpc";
 
 export const appRouter = router({
-  hello: procedure
-    .input(
-      z.object({
-        data: z.number(),
-        name: z.string(),
-      })
-    )
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.data}`,
-        name: `this is my name : ${input.name}`,
-      };
-    }),
-  hi: procedure.query(() => {
-    return "hi";
-  }),
+ 
 
   fetchsome: procedure
     .input(
@@ -32,6 +17,7 @@ export const appRouter = router({
       const data = await response.json();
       return {
         followers: `${data.followers}`,
+        username:`${data.login}`
       };
     }),
 });
